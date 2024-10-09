@@ -1,5 +1,5 @@
 const express = require('express');
-import conexao from './config/bancodedados.js';
+const conexao = require('./config/bancodedados.js')
 const app = express();
 const port = 3000;
 
