@@ -1,19 +1,23 @@
+// Chamando as dependencias instaladas
 const express = require('express');
-const conexao = require('./config/bancodedados.js')
+const conexao = require('./config/mongodb.js')
+const camisaRoutes = require('./routes/camisaRoutes.js')
+
+// Atribuindo o express() em app
 const app = express();
-const port = 3000;
 
-// Middleware para tratar requisições JSON
-app.use(express.json());
-
-// Rota principal
-app.get('/', (req, res) => {
-  res.send('Bem-vindo ao servidor Node.js!');
-});
-
+// Estabelecendo a conexão com o banco de dados
 conexao
 
+// Middleware para reconhecer e tratar requisições JSON
+app.use(express.json());
+
+// Declaração de onde as rotas de camisas serão usadas na API
+const API = 'api/v1'
+app.use(`/${API}/camisas`, camisaRoutes)
+
+// Definindo a PORTA do server como 3000 
+const PORT = 3000;
+
 // Iniciando o servidor
-app.listen(port, () => {
-  console.log(`Servidor rodando em http://localhost:${port}`);
-});
+app.listen(PORT, () => console.log(`Servidor rodando em http://localhost:${PORT}`))
