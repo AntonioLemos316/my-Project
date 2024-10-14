@@ -2,6 +2,7 @@
 const express = require('express');
 const conexao = require('./config/mongodb.js')
 const camisaRoutes = require('./routes/camisaRoutes.js')
+const userRoutes = require('./routes/userRoutes.js')
 
 // Atribuindo o express() em app
 const app = express();
@@ -15,6 +16,7 @@ app.use(express.json());
 // Declaração de onde as rotas de camisas serão usadas na API
 const API = 'api/v1'
 app.use(`/${API}/camisas`, camisaRoutes)
+app.use(`/${API}/users`, userRoutes)
 
 // Definindo a PORTA do server como 3000 
 const PORT = 3000;

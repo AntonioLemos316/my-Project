@@ -1,6 +1,6 @@
 // Chamando express e Camisa
 const express = require('express');
-const Camisa = require('../models/camisaModel');
+const Camisa = require('../models/camisaModel.js');
 
 // Atribuindo a router o metodo Router()
 const router = express.Router()
