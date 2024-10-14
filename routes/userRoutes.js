@@ -4,6 +4,18 @@ const Camisa = require('../models/camisaModel.js')
 
 const router = express.Router()
 
+router.get('/', async (req, res) => {
+    try {
+        const allUsers = await User.find({})
+        if(!allUsers){
+            return res.status(404).send({message: "Usuarios não encontrados!"})
+        }
+        return res.status(200).send({message: "Usuarios encontrados", count: allUsers.length, data: allUsers})
+    } catch (error) {
+        return res.status(500).send({message: "Erro geral ao buscar usuarios"})
+    }
+})
+
 router.post('/', async (req, res) => {
     const {nome, email, senha} = req.body
     if(!nome || !email || !senha){
