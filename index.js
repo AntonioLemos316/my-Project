@@ -1,6 +1,7 @@
 // Chamando as dependencias instaladas
 const express = require('express');
 const conexao = require('./config/mongodb.js')
+const morgan = require('morgan')
 const camisaRoutes = require('./routes/camisaRoutes.js')
 const userRoutes = require('./routes/userRoutes.js')
 
@@ -10,6 +11,9 @@ const app = express();
 // Estabelecendo a conexão com o banco de dados
 conexao
 
+// Middleware para exibir o uso da API no terminal
+app.use(morgan(':method :url :status :res[content-length] - :response-time ms'))
+
 // Middleware para reconhecer e tratar requisições JSON
 app.use(express.json());
 
@@ -17,6 +21,11 @@ app.use(express.json());
 const API = 'api/v1'
 app.use(`/${API}/camisas`, camisaRoutes)
 app.use(`/${API}/users`, userRoutes)
+
+// Middleware caso não passe uma rota válida
+app.use((req, res) => {
+    res.status(404).send({message: '404 - Not Found, rota inválida!'});
+});
 
 // Definindo a PORTA do server como 3000 
 const PORT = 3000;
