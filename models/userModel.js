@@ -6,22 +6,25 @@ const userSchema = new Schema({
         type: String,
         required: true, 
     },
+    senha: { 
+        type: String,
+        required: true, 
+        minlength: 3
+    },
     email: { 
         type: String,
         required: true, 
         unique: true,
         match: /.+\@.+\..+/
     },
-    senha: { 
+    role: {
         type: String,
-        required: true, 
-        minlength: 3
+        enum: ['normal', 'admin'],
+        default: 'normal'
     },
-    camisa: [{
+    carrinhos: [{
         type: Schema.Types.ObjectId,
-        ref: 'Camisa',
-        required: false,
-        default: []
+        ref: 'Carrinho'
     }]
 })
 

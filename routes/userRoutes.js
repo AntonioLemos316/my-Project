@@ -16,12 +16,26 @@ router.get('/', async (req, res) => {
     }
 })
 
-router.post('/', async (req, res) => {
-    const {nome, email, senha} = req.body
-    if(!nome || !email || !senha){
+router.post('/cadastrar', async (req, res) => {
+    const {nome, senha, email} = req.body
+    if(!nome || !senha || !email){
         return res.status(404).send({message: "Preencha todos os dados!"})
     }
-    const newUser = {nome, email, senha}
+    const newUser = {nome, email, senha, role: 'normal'}
+    try {
+        const user = await User.create(newUser)
+        return res.status(200).send({message: "Criado!", data: user})
+    } catch (error) {
+        return res.status(500).send({message: error.message})
+    }
+})
+
+router.post('/criar-admin', async (req, res) => {
+    const {nome, senha, email} = req.body
+    if(!nome || !senha || !email){
+        return res.status(404).send({message: "Preencha todos os dados!"})
+    }
+    const newUser = {nome, email, senha, role: 'admin'}
     try {
         const user = await User.create(newUser)
         return res.status(200).send({message: "Criado!", data: user})

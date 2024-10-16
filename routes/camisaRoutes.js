@@ -27,15 +27,16 @@ router.get('/', async (req, res) => {
 // POST verbo http utilizado para CRIAR 
 router.post('/', async (req, res) => {
     // Usando uma tecnica do ES6 que é desestruturar, para pegar os atributos que vão ser passados no body
-    const {marca, tamanho, cor, preco} = req.body
+    const {nome, preco, descricao = {}, imagemUrl} = req.body
+    const {tamanho, cor} = descricao
     // Validação se não existir um dos atributos e o retorno do erro com a msg
-    if(!marca || !tamanho || !cor || !preco){
+    if(!nome || !preco || !descricao || !tamanho || !cor || !imagemUrl){
       return res.status(404).send({message: 'Preencha todos os dados!'})
     }
-    // Atribuindo um objeto literal com os atributos pegos no body
-    const novaCamisa = {marca, tamanho, cor, preco}
     // Utilizando o try para uma consulta sensivel no banco de dados
     try {  
+        // Atribuindo um objeto literal com os atributos pegos no body
+        const novaCamisa = {nome, preco, descricao: {tamanho, cor}, imagemUrl}
         // Fazendo referencia a Model e atraves do metodo create passando a novaCamisa criada acima
         const camisa = await Camisa.create(novaCamisa)
         if(!camisa){
@@ -76,24 +77,32 @@ router.patch('/:id', async (req, res) => {
     // Pegamos o id que foi exigido na rota '/:id'
     const {id} = req.params
     // Pegamos os atributos passado no body da req/requisição que foi será passado pelo usuario
-    const {marca, tamanho, cor, preco} = req.body
-    // Atribuimos esses atributos a uma constante para gerar um objeto 
-    const atualizarCamisa = {marca, tamanho, cor, preco}
+    const {nome, preco, descricao = {}, imagemUrl} = req.body
+    const {tamanho, cor} = descricao
     // Validação para exigir pelo menos um campo preenchido para poder atualizar/adicionar a camisa ao user
-    if(!marca && !tamanho && !cor && !preco){
+    if(!nome && !preco && !descricao && !tamanho && !cor && !imagemUrl){
       return res.status(404).send({message: 'Preencha pelo menos um campo!'})
     }
+  
     // Try para fazer a consulta sensivel ao banco de dados e poder mostrar um erro
     try {
-        // Metodo findByIdAndUpdate que pega a Id passada na rota e os atributos passado na req.body
-        // { new: true } é para poder exibir a parte que foi atualizada, sem isso mostra a parte antiga 
-        const camisa = await Camisa.findByIdAndUpdate(id, atualizarCamisa, { new: true })
+        const camisa = await Camisa.findById(id)
         // Se não existir a camisa da erro
         if(!camisa){
-            return res.status(404).send({message: "Erro ao atualizar!"})
+            return res.status(404).send({message: "Erro ao encontrar a camisa!"})
         }
-        // Se passar na verificação acima, retorna a atualização feita
-        return res.status(200).send({message: 'Atualizada!', data: atualizarCamisa})
+        const atualizarCamisa = {
+            // Se 'nome' foi fornecido (não é undefined), usa o novo valor; caso contrário, mantém o valor atual da camisa
+            nome: nome !== undefined ? nome : camisa.nome,
+            preco: preco !== undefined ? preco : camisa.preco,
+            descricao: {
+                tamanho: tamanho !== undefined ? tamanho : camisa.descricao?.tamanho,
+                cor: cor !== undefined ? cor : camisa.descricao?.cor,
+            },
+            imagemUrl: imagemUrl !== undefined ? imagemUrl : camisa.imagemUrl,
+        };
+        const camisaAtualizada = await Camisa.findByIdAndUpdate(camisa, atualizarCamisa, { new: true })
+        return res.status(200).send({message: 'Atualizada!', data: camisaAtualizada})
     // Catch para pegar o erro se aconceter na consulta ao banco de dados
     } catch (error) {
         return res.status(500).send({message: error.message})
@@ -110,7 +119,7 @@ router.delete('/:id', async (req, res) => {
         const camisa = await Camisa.findByIdAndDelete(id)
         // Se não tiver camisa retorna o erro
         if(!camisa){
-            return res.status(404).send({message: "Erro ao deletar!"})
+            return res.status(404).send({message: "Erro ao encontrar camisa!"})
         }
         // Se passar na verificação acima retorna o sucesso da operação
         return res.status(200).send({message: "Deletada!"})
