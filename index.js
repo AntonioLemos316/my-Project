@@ -4,6 +4,7 @@ const conexao = require('./config/mongodb.js')
 const morgan = require('morgan')
 const camisaRoutes = require('./routes/camisaRoutes.js')
 const userRoutes = require('./routes/userRoutes.js')
+const carrinhoRoutes = require('./routes/carrinhoRoutes.js')
 
 // Atribuindo o express() em app
 const app = express();
@@ -21,6 +22,7 @@ app.use(express.json());
 const API = 'api/v1'
 app.use(`/${API}/camisas`, camisaRoutes)
 app.use(`/${API}/users`, userRoutes)
+app.use(`/${API}/carrinhos`, carrinhoRoutes)
 
 // Middleware caso não passe uma rota válida
 app.use((req, res) => {

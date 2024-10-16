@@ -5,25 +5,6 @@ const Camisa = require('../models/camisaModel.js');
 // Atribuindo a router o metodo Router()
 const router = express.Router()
 
-// GET verbo http utilizado para BUSCAR, LISTAR ou LER
-router.get('/', async (req, res) => {
-    // try e catch é um bloco para capturar erros, mais utilizado em questões como consulta ao banco de dados
-    try {
-        // Buscando todas as camisas atraves da MODEL Camisa com o metodo find
-        const allCamisas = await Camisa.find({})
-        // Se não tiver camisa retorno um erro 404
-        if(!allCamisas.length){
-            return res.status(404).send({message: "Erro ao buscar camisas!"})
-        }
-        // Com a lógica acima caso seja true, significa que encontrou algo e retornamos o que foi encontrado
-        return res.status(200).send({message: "Camisas", data: allCamisas})
-        // O catch é o erro caso a busca no banco de dados falhe 
-    } catch (error) {
-        // Podemos retornar um erro 500 que foi no servidor e tbm podemos passar um console.log(error) 
-        return res.status(500).send({message: error.message})
-    }
-})
-
 // POST verbo http utilizado para CRIAR 
 router.post('/', async (req, res) => {
     // Usando uma tecnica do ES6 que é desestruturar, para pegar os atributos que vão ser passados no body
@@ -48,6 +29,25 @@ router.post('/', async (req, res) => {
     // O catch que vai pegar o erro da consulta a base de dados
     } catch (error) { 
         // msg de erro na consulta
+        return res.status(500).send({message: error.message})
+    }
+})
+
+// GET verbo http utilizado para BUSCAR, LISTAR ou LER
+router.get('/', async (req, res) => {
+    // try e catch é um bloco para capturar erros, mais utilizado em questões como consulta ao banco de dados
+    try {
+        // Buscando todas as camisas atraves da MODEL Camisa com o metodo find
+        const allCamisas = await Camisa.find({})
+        // Se não tiver camisa retorno um erro 404
+        if(!allCamisas.length){
+            return res.status(404).send({message: "Erro ao buscar camisas!"})
+        }
+        // Com a lógica acima caso seja true, significa que encontrou algo e retornamos o que foi encontrado
+        return res.status(200).send({message: "Camisas", data: allCamisas})
+        // O catch é o erro caso a busca no banco de dados falhe 
+    } catch (error) {
+        // Podemos retornar um erro 500 que foi no servidor e tbm podemos passar um console.log(error) 
         return res.status(500).send({message: error.message})
     }
 })
