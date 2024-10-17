@@ -5,6 +5,7 @@ const morgan = require('morgan')
 const camisaRoutes = require('./routes/camisaRoutes.js')
 const userRoutes = require('./routes/userRoutes.js')
 const carrinhoRoutes = require('./routes/carrinhoRoutes.js')
+const compraRoutes = require('./routes/compraRoutes.js')
 
 // Atribuindo o express() em app
 const app = express();
@@ -19,10 +20,10 @@ app.use(morgan(':method :url :status :res[content-length] - :response-time ms'))
 app.use(express.json());
 
 // Declaração de onde as rotas de camisas serão usadas na API
-const API = 'api/v1'
-app.use(`/${API}/camisas`, camisaRoutes)
-app.use(`/${API}/users`, userRoutes)
-app.use(`/${API}/carrinhos`, carrinhoRoutes)
+app.use(`/users`, userRoutes)
+app.use(`/camisas`, camisaRoutes)
+app.use(`/carrinhos`, carrinhoRoutes)
+app.use(`/compras`, compraRoutes)
 
 // Middleware caso não passe uma rota válida
 app.use((req, res) => {

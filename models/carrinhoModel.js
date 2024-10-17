@@ -18,4 +18,9 @@ const carrinhoSchema = new Schema({
 const Carrinho = mongoose.model('Carrinho', carrinhoSchema)
 module.exports = Carrinho
 
-//http://localhost:3000/api/v1/carrinhos/671038f9ce64702c2f790824
+/* 
+Exemplo de JSON 
+  "camisaId":"agsg41468g6as4g68a",
+  "quantidade":1
+Exemplo do que será passado no corpo da requisição = req.body
+*/

@@ -13,3 +13,15 @@ const camisaSchema = new Schema({
 
 const Camisa = mongoose.model('Camisa', camisaSchema)
 module.exports = Camisa
+
+/* 
+Exemplo de JSON 
+  "nome":"Nike",
+  "preco":99.90,
+  "descricao":{
+    "tamanho":"P",
+    "cor":"Rosa",
+  },
+  "imagemUrl":"camisa-academia.png"
+Exemplo do que será passado no corpo da requisição = req.body
+*/
