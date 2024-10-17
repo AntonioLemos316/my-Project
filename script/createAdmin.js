@@ -36,3 +36,5 @@ const criarAdmin = async () => {
 
 // Executar a função
 criarAdmin();
+
+
