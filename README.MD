@@ -5,25 +5,25 @@
 ```
 POST    /camisas
 {
-  "nome":"Nike",
-  "preco":99.90,
+  "nome":"Adidas",
+  "preco":49.90,
   "descricao":{ 
-    "tamanho":"P", 
-    "cor":"Rosa"
+    "tamanho":"M", 
+    "cor":"Azul"
   },
   "imagemUrl":"camisa-academia.png"
 }
 
 GET     /camisas
 
-GET     /camisas/671193e2a051c2bc1ae63cdb
+GET     /camisas/:id
 
-PATCH   /camisas/671193e2a051c2bc1ae63cdb
+PATCH   /camisas/:id
 {
   "descricao": {"cor":"Amarela"}
 }
 
-DELETE  /camisas/671193e2a051c2bc1ae63cdb
+DELETE  /camisas/:id
 ```
 
 #### Users
@@ -37,47 +37,47 @@ POST    /users
 
 GET     /users
 
-GET     /users/6711926ba051c2bc1ae63cd5
+GET     /users/:id
 
-PATCH   /users/6711926ba051c2bc1ae63cd5
+PATCH   /users/:id
 {
  "senha":"1234"
 }
 
-DELETE  /users/6711926ba051c2bc1ae63cd5
+DELETE  /users/:id
 ```
 
 #### Carrinhos
 ```
 GET     /carrinhos
 
-GET     /carrinhos/6711926ba051c2bc1ae63cd7
+GET     /carrinhos/:id
 
-PATCH   /carrinhos/adicionar/6711926ba051c2bc1ae63cd7
+PATCH   /carrinhos/adicionar/:id
 {
- "camisaId":"6711a1564e850d6fcd2e282f"
+ "camisaId":"67121b3894d3006082dca66f"
 }
 
-PATCH   /carrinhos/aumentar/6711926ba051c2bc1ae63cd7
+PATCH   /carrinhos/aumentar/:id
 {
  "camisaId":"6711a1564e850d6fcd2e282f",
  "quantidade": 1
 }
 
-PATCH   /carrinhos/diminuir/6711926ba051c2bc1ae63cd7
+PATCH   /carrinhos/diminuir/:id
 {
   "camisaId":"6711a1564e850d6fcd2e282f",
   "quantidade": 1
 }
 
-DELETE  /carrinhos/6711926ba051c2bc1ae63cd7/remover/6711a1564e850d6fcd2e282f
+DELETE  /carrinhos/:carrinhoId/remover/:camisaId
 ```
 
 #### Compras
 ```
-POST   /compras/pendente/6711926ba051c2bc1ae63cd7
+POST   /compras/pendente/:carrinhoId
 GET    /compras/
-GET    /compras/671194fea051c2bc1ae63d0f
+GET    /compras/:id
 PATCH  /compras/:id
 ```
 ## Baixar ou Clonar 
