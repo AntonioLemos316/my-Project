@@ -1,6 +1,6 @@
 // Chamando express e Camisa
 const express = require('express');
-const Camisa = require('../models/camisaModel.js');
+const Camisa = require('../models/CamisaModel.js');
 
 // Atribuindo a router o metodo Router()
 const router = express.Router()
@@ -25,7 +25,7 @@ router.post('/', async (req, res) => {
             return res.status(404).send({message: "Erro ao criar!"})
         }
         // Devido a logica se for true ja podemos retornar a msg 'Criada!' e em data a camisa que foi criada
-        return res.status(200).send({message: 'Criada!', data: camisa})
+        return res.status(200).send({message: 'Criada!', camisa})
     // O catch que vai pegar o erro da consulta a base de dados
     } catch (error) { 
         // msg de erro na consulta
@@ -44,7 +44,7 @@ router.get('/', async (req, res) => {
             return res.status(404).send({message: "Erro ao buscar camisas!"})
         }
         // Com a lógica acima caso seja true, significa que encontrou algo e retornamos o que foi encontrado
-        return res.status(200).send({message: "Camisas", data: allCamisas})
+        return res.status(200).send({message: "Encontradas!", count: allCamisas.length, allCamisas})
         // O catch é o erro caso a busca no banco de dados falhe 
     } catch (error) {
         // Podemos retornar um erro 500 que foi no servidor e tbm podemos passar um console.log(error) 
@@ -65,7 +65,7 @@ router.get('/:id', async (req, res) => {
             return res.status(404).send({message: "Erro ao buscar camisa!"})
         }
         // Se exister a camisa então ela e a msg é exibida
-        return res.status(200).send({message: "Camisa", data: camisa})
+        return res.status(200).send({message: "Encontrada!", camisa})
     // Catch para retornar o erro na consulta ao banco de dados caso aconteça
     } catch (error) {
         return res.status(500).send({message: error.message})
@@ -96,13 +96,13 @@ router.patch('/:id', async (req, res) => {
             nome: nome !== undefined ? nome : camisa.nome,
             preco: preco !== undefined ? preco : camisa.preco,
             descricao: {
-                tamanho: tamanho !== undefined ? tamanho : camisa.descricao?.tamanho,
-                cor: cor !== undefined ? cor : camisa.descricao?.cor,
+                tamanho: tamanho !== undefined ? tamanho : camisa.descricao.tamanho,
+                cor: cor !== undefined ? cor : camisa.descricao.cor,
             },
             imagemUrl: imagemUrl !== undefined ? imagemUrl : camisa.imagemUrl,
         };
         const camisaAtualizada = await Camisa.findByIdAndUpdate(camisa, atualizarCamisa, { new: true })
-        return res.status(200).send({message: 'Atualizada!', data: camisaAtualizada})
+        return res.status(200).send({message: 'Atualizada!', camisaAtualizada})
     // Catch para pegar o erro se aconceter na consulta ao banco de dados
     } catch (error) {
         return res.status(500).send({message: error.message})
@@ -122,7 +122,7 @@ router.delete('/:id', async (req, res) => {
             return res.status(404).send({message: "Erro ao encontrar camisa!"})
         }
         // Se passar na verificação acima retorna o sucesso da operação
-        return res.status(200).send({message: "Deletada!"})
+        return res.status(200).send({message: "Camisa deletada!"})
     // Catch para pegar o erro caso acontece e podermos exibir no console ou retornar o erro como uma msg
     } catch (error) {
         return res.status(500).send({message: error.message})

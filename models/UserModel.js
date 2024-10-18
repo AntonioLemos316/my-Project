@@ -11,3 +11,11 @@ const userSchema = new Schema({
 
 const User = mongoose.model('User', userSchema)
 module.exports = User
+
+/* 
+Exemplo de JSON 
+  "nome":"Antonio",
+  "senha":123,
+  "email":"antonio@example.com"
+Exemplo do que será passado no corpo da requisição = req.body
+*/

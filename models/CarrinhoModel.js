@@ -5,7 +5,8 @@ const carrinhoSchema = new Schema({
     usuarioId: {type: Schema.Types.ObjectId, ref: 'User'},
     itens: [{
         camisaId: {type: Schema.Types.ObjectId, ref: 'Camisa'},
-        quantidade: {type: Number, required: true}
+        quantidade: {type: Number, required: true},
+        preco:{type: Number, require: true}
     }],
     carrinhoCriadoEm: {type: Date, default: Date.now },
     status: {

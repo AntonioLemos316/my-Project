@@ -15,3 +15,10 @@ const CompraSchema = new Schema({
 
 const Compra = mongoose.model('Compra', CompraSchema);
 module.exports = Compra;
+
+/* 
+Exemplo de JSON 
+  "camisaId":"agsg41468g6as4g68a",
+  "quantidade":1
+Exemplo do que será passado no corpo da requisição = req.body
+*/

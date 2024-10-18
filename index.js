@@ -2,10 +2,10 @@
 const express = require('express');
 const conexao = require('./config/mongodb.js')
 const morgan = require('morgan')
-const camisaRoutes = require('./routes/camisaRoutes.js')
-const userRoutes = require('./routes/userRoutes.js')
-const carrinhoRoutes = require('./routes/carrinhoRoutes.js')
-const compraRoutes = require('./routes/compraRoutes.js')
+const CamisaRoutes = require('./routes/CamisaRoutes.js')
+const UserRoutes = require('./routes/UserRoutes.js')
+const CarrinhoRoutes = require('./routes/CarrinhoRoutes.js')
+const CompraRoutes = require('./routes/CompraRoutes.js')
 
 // Atribuindo o express() em app
 const app = express();
@@ -20,10 +20,10 @@ app.use(morgan(':method :url :status :res[content-length] - :response-time ms'))
 app.use(express.json());
 
 // Declaração de onde as rotas de camisas serão usadas na API
-app.use(`/users`, userRoutes)
-app.use(`/camisas`, camisaRoutes)
-app.use(`/carrinhos`, carrinhoRoutes)
-app.use(`/compras`, compraRoutes)
+app.use(`/users`, UserRoutes)
+app.use(`/camisas`, CamisaRoutes)
+app.use(`/carrinhos`, CarrinhoRoutes)
+app.use(`/compras`, CompraRoutes)
 
 // Middleware caso não passe uma rota válida
 app.use((req, res) => {
