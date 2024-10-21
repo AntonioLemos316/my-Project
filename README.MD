@@ -1,6 +1,6 @@
 ## API eCommerce Camisas (possivel alteração no nome)
 
-#### DSI 04 | Grupo: Ruama, Vinicius
+#### DSI 06 | Grupo: Ruama, Vinicius
 #### Apoio: Antônio Marques
 A API eCommerce Camisas, fornecerá base para um e-commerce a principio de camisas. Contara com uma interface amigável, na qual permite que usuários pesquisem e comprem camisas de forma eficiente e segura.
 
