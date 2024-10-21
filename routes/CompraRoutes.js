@@ -62,7 +62,9 @@ router.post('/pendente/:carrinhoId', async (req, res) => {
 router.patch('/:id', async (req, res) => {
     const { id } = req.params;
     const { status } = req.body;
-
+    if(!status){
+        return res.status(404).send({message: "Preencha o status"})
+    }
     try {
         const compra = await Compra.findById(id);
         if (!compra) {

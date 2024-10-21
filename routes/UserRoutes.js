@@ -68,6 +68,9 @@ router.get('/:id', async (req, res) => {
 router.patch('/:id', async (req, res) => {
     const {id} = req.params
     const {nome, senha, email} = req.body
+    if(!nome && !senha && !email){
+        return res.status(400).send({message: "Preencha um campo"})
+    }
     try {
       const userId = await User.findById(id)
       if(!userId){
@@ -75,9 +78,9 @@ router.patch('/:id', async (req, res) => {
       }
 
       const userUpdate = {
-        nome: nome !== undefined && nome !== "" ? nome : userId.nome,
-        senha: senha !== undefined && senha !== "" ? senha : userId.senha,
-        email: email !== undefined && email !== "" ? email : userId.email
+        nome: nome !== undefined ? nome : userId.nome,
+        senha: senha !== undefined ? senha : userId.senha,
+        email: email !== undefined ? email : userId.email
       }
       const updatedUser = await User.findByIdAndUpdate(id, userUpdate, {new: true})
       return res.status(200).send({message: "Usuario Atualizado", updatedUser})
