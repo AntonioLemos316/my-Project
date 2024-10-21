@@ -167,17 +167,3 @@ GET    /compras/
 GET    /compras/:id
 PATCH  /compras/:id
 ```
-## Baixar ou Clonar 
-```
-git clone "endereço do projeto"
-```
-
-## Como instalar
-```
-npm install
-```
-
-## Inicar a API
-```
-npm run dev
-```
