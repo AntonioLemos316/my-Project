@@ -162,8 +162,11 @@ DELETE  /carrinhos/:carrinhoId/remover/:camisaId
 #### Compras
 ```
 POST   /compras/pendente/:carrinhoId
+
 GET    /compras/
+
 GET    /compras/:id
+
 PATCH  /compras/:id
 {
   "status": "concluída"
