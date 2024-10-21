@@ -1,4 +1,4 @@
-## API eCommerce Camisas (possivel alteraçã no nome)
+## API eCommerce Camisas (possivel alteração no nome)
 
 #### DSI 04 | Grupo: Ruama, Vinicius
 #### Apoio: Antônio Marques
