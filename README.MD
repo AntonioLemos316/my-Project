@@ -85,10 +85,9 @@ my-project/
 
 ## Exemplo de uso
 
-```
 ### Rotas e exemplos
-#### Camisas
 
+#### Camisas
 ```
 POST    /camisas
 {
@@ -166,4 +165,7 @@ POST   /compras/pendente/:carrinhoId
 GET    /compras/
 GET    /compras/:id
 PATCH  /compras/:id
+{
+  "status": "concluída"
+}
 ```
