@@ -46,23 +46,20 @@ npm run dev
 
 ## Entidades, Endpoints e Exemplos de Criação
 
-### Camisas
+#### Camisas
 - nome
 - preco
 - descricao, tamanho, cor
 - imagemUrl
 
-### Endpoints
-```
 POST    /camisas
 GET     /camisas
 GET     /camisas/:id
 PATCH   /camisas/:id
 DELETE  /camisas/:id
-```
 
-### Exemplo de criação
-```json{
+```
+{
   "nome":"Adidas",
   "preco":49.90,
   "descricao":{ 
@@ -73,64 +70,52 @@ DELETE  /camisas/:id
 }
 ```
 
-### Users
+#### Users
 - nome
 - senha
 - email
 
-### Endpoints
-```
 POST    /users
 GET     /users
 GET     /users/:id
 PATCH   /users/:id
 DELETE  /users/:id
-```
 
-### Exemplo de criação
-```json{
+```
+{
  "nome":"Antonio",
  "senha":123,
  "email":"antonio@example.com"
 }
 ```
 
+#### Carrinhos
+- camisaId
+- quantidade
 
-## Carrinhos
-```
 GET     /carrinhos
-
 GET     /carrinhos/:id
-
 PATCH   /carrinhos/adicionar/:id
-{
- "camisaId":"67121b3894d3006082dca66f"
-}
-
 PATCH   /carrinhos/aumentar/:id
+PATCH   /carrinhos/diminuir/:id
+DELETE  /carrinhos/:carrinhoId/remover/:camisaId
+
+```
 {
  "camisaId":"6711a1564e850d6fcd2e282f",
  "quantidade": 1
 }
-
-PATCH   /carrinhos/diminuir/:id
-{
-  "camisaId":"6711a1564e850d6fcd2e282f",
-  "quantidade": 1
-}
-
-DELETE  /carrinhos/:carrinhoId/remover/:camisaId
 ```
 
-## Compras
-```
+#### Compras
+- status
+
 POST   /compras/pendente/:carrinhoId
-
 GET    /compras/
-
 GET    /compras/:id
-
 PATCH  /compras/:id
+
+```
 {
   "status": "concluída"
 }
