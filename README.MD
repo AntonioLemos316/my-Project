@@ -1,93 +1,55 @@
-## API eCommerce Camisas (possivel alteração no nome)
+## eCommerce Shirts API
 
 #### DSI 06 | Grupo: Ruama Vitória, Joelma Nayara, Winicius Gabriel, Jamerson Curchatuz, Christian Manoel
 #### Apoio: Antônio Marques
-A API eCommerce Camisas, fornecerá base para um e-commerce a principio de camisas. Contara com uma interface amigável, na qual permite que usuários pesquisem e comprem camisas de forma eficiente e segura.
+REST API para gerenciamento de usuários, produtos, carrinhos e compras em um sistema de e-commerce.
 
 ## Funcionalidades
 
-- Cadastro de usuários, camisas, compras
-- Login de usuários (em desenvolvimento)
-- Exibição de usuários, camisas, compras e carrinhos
-- Atualização de usuários, camisas, compras e carrinhos
-- Deleção de usuários, camisas, compras 
-- Finalização de compras (em desenvolvimento)
+### Implementadas
+- CRUD de usuários
+- CRUD de produtos
+- CRUD de compras
+- Carrinho de compras
 
-## Tecnologias Utilizadas
+### Em desenvolvimento
+- autenticação JWT
+- finalização de pagamento
 
-- **Front-end**: 
-  - React(em planejamento)
+## Stack
 
-- **Back-end**:
-  - Node.js
-  - Express
-  - MongoDB
-  - Mongoose
+- :contentReference[oaicite:0]{index=0}
+- :contentReference[oaicite:1]{index=1}
+- :contentReference[oaicite:2]{index=2}
+- :contentReference[oaicite:3]{index=3}
 
 ## Estrutura do Projeto
 ```
-my-project/
-│
-├── client/
-│   ├── image/
-│   ├── carrossel.js
-│   ├── index.html
-│   ├── styles.css
-├── server/
-│   ├── config/
-│   │   ├── mongoDb.js
-│   ├── middleware/
-│   ├── models/
-│   │   ├── CamisaModel.js
-│   │   └── CarrinhoModel.js
-│   │   └── CompraModel.js
-│   │   └── UserModel.js
-│   ├── routes/
-│   │   └── CamisaRoutes.js
-│   │   └── CarrinhoRoutes.js
-│   │   └── CompraRoutes.js
-│   │   └── UserRoutes.js
-│   ├── script/
-│   │   └── createAdmin.js
-│   └── index.js
-│   └── package-lock.json
-│   └── package.json
-├── .gitignore
-└── README.md
+server/
+├── config/
+├── middleware/
+├── models/
+├── routes/
+├── scripts/
+└── index.js
 ```
 
 ## Instalação
 
-### Pré-requisitos
+### Como executar
 
-- [Node.js](https://nodejs.org/) instalado
-- [ThunderClient](https://www.thunderclient.com/) para gerenciar as requisições ou postman instalado
-- [Postman](https://www.postman.com/downloads/) para gerenciar as requisições ou thunder client extensão
-- [MongoDB](https://www.mongodb.com/try/download/community) para gerenciar o MongoDB / Mongoose
-
-### Configuração do Banco de Dados
-
-1. Inicie o compass para conectar ao MongoDB ou inicie com a extensão no vscode chamada de Database Client JDBC criado por Weijan Chen.
-2. Ao inicar o servidor express o mongoDb criara a base de dados eCommerceCamisas se passado no endereço da conexão.
-
-### Executando o Projeto
-
-1. Clone o repositório:
 ```bash
-   git clone https://github.com/ruamaszxo16/my-Project
-
-   cd server // mudança de pasta
-
-   npm install // instalando o node_modules
-
-   npm run dev // iniciando o servidor
+git clone https://github.com/AntonioLemos316/my-Project/
+cd server
+npm install
+npm run dev
 ```
 
 ## Exemplo de uso
 
 ### Rotas e exemplos
 
-#### Camisas
+## Camisas
 ```
 POST    /camisas
 {
@@ -112,7 +74,7 @@ PATCH   /camisas/:id
 DELETE  /camisas/:id
 ```
 
-#### Users
+## Users
 ```
 POST    /users
 {
@@ -133,7 +95,7 @@ PATCH   /users/:id
 DELETE  /users/:id
 ```
 
-#### Carrinhos
+## Carrinhos
 ```
 GET     /carrinhos
 
@@ -159,7 +121,7 @@ PATCH   /carrinhos/diminuir/:id
 DELETE  /carrinhos/:carrinhoId/remover/:camisaId
 ```
 
-#### Compras
+## Compras
 ```
 POST   /compras/pendente/:carrinhoId
 
