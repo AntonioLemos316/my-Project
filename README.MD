@@ -52,7 +52,7 @@ npm run dev
 - descricao, tamanho, cor
 - imagemUrl
 
-POST    /camisas
+***POST    /camisas
 GET     /camisas
 GET     /camisas/:id
 PATCH   /camisas/:id
