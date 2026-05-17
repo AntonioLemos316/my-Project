@@ -44,14 +44,25 @@ npm install
 npm run dev
 ```
 
-## Exemplo de uso
+## Entidades, Endpoints e Exemplos de Criação
 
-### Rotas e exemplos
+### Camisas
+- nome
+- preco
+- descricao, tamanho, cor
+- imagemUrl
 
-## Camisas
+### Endpoints
 ```
 POST    /camisas
-{
+GET     /camisas
+GET     /camisas/:id
+PATCH   /camisas/:id
+DELETE  /camisas/:id
+```
+
+### Exemplo de criação
+```json{
   "nome":"Adidas",
   "preco":49.90,
   "descricao":{ 
@@ -60,39 +71,30 @@ POST    /camisas
   },
   "imagemUrl":"camisa-academia.png"
 }
-
-GET     /camisas
-
-GET     /camisas/:id
-
-PATCH   /camisas/:id
-{
-  "descricao": {"cor":"Amarela"}
-}
-
-DELETE  /camisas/:id
 ```
 
-## Users
+### Users
+- nome
+- senha
+- email
+
+### Endpoints
 ```
 POST    /users
-{
+GET     /users
+GET     /users/:id
+PATCH   /users/:id
+DELETE  /users/:id
+```
+
+### Exemplo de criação
+```json{
  "nome":"Antonio",
  "senha":123,
  "email":"antonio@example.com"
 }
-
-GET     /users
-
-GET     /users/:id
-
-PATCH   /users/:id
-{
- "senha":"1234"
-}
-
-DELETE  /users/:id
 ```
+
 
 ## Carrinhos
 ```
