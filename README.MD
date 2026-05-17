@@ -18,10 +18,9 @@ REST API para gerenciamento de usuários, produtos, carrinhos e compras em um si
 
 ## Stack
 
-- :contentReference[oaicite:0]{index=0}
-- :contentReference[oaicite:1]{index=1}
-- :contentReference[oaicite:2]{index=2}
-- :contentReference[oaicite:3]{index=3}
+- Mongodb
+- Node
+- JavaScript
 
 ## Estrutura do Projeto
 ```
