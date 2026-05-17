@@ -74,13 +74,13 @@ DELETE  /camisas/:id
 - nome
 - senha
 - email
-
+```
 POST    /users
 GET     /users
 GET     /users/:id
 PATCH   /users/:id
 DELETE  /users/:id
-
+```
 ```
 {
  "nome":"Antonio",
@@ -92,14 +92,14 @@ DELETE  /users/:id
 #### Carrinhos
 - camisaId
 - quantidade
-
+```
 GET     /carrinhos
 GET     /carrinhos/:id
 PATCH   /carrinhos/adicionar/:id
 PATCH   /carrinhos/aumentar/:id
 PATCH   /carrinhos/diminuir/:id
 DELETE  /carrinhos/:carrinhoId/remover/:camisaId
-
+```
 ```
 {
  "camisaId":"6711a1564e850d6fcd2e282f",
@@ -109,12 +109,12 @@ DELETE  /carrinhos/:carrinhoId/remover/:camisaId
 
 #### Compras
 - status
-
+```
 POST   /compras/pendente/:carrinhoId
 GET    /compras/
 GET    /compras/:id
 PATCH  /compras/:id
-
+```
 ```
 {
   "status": "concluída"
